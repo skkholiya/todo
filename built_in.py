@@ -148,6 +148,3 @@ print("Hello Sam!".translate(dict_));
 
 #zfill(): 1-args,(len) it will fill the values with the 0 at the starting of string.until it reaches to the specified length.
 print("hello".zfill(10));
-
-
-
