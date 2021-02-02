@@ -1,6 +1,7 @@
 # todo
 Basics of python
-operators
-string(built in methods)
-List
+operators,
+datatypes,
+string(built in methods),
+List.
 till now..
