@@ -49,7 +49,13 @@ for index in range(length):
   if ord(txt[index]) in range(48,58):
     print(txt[index]);
 
+#convert list to string
+int_list = [4,3,5,4,2,1,6];
+#iterate all the int_list elements and convert the elements to string type of list
+#after that using seperator "," join all list elements into one string.
+list_to_string=",".join([str(x) for x in int_list]);
 
+print(list_to_string);
 
 
 
