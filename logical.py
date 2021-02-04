@@ -57,5 +57,69 @@ list_to_string=",".join([str(x) for x in int_list]);
 
 print(list_to_string);
 
+#Convert a list of multiple integers into a single integer
+int_list= [44,32,2,"dd"]
+
+string_obj = [str(outcome) for outcome in int_list if isinstance(outcome,int)];
+convert_to_string = "".join(string_obj);
+convert_to_int = int(convert_to_string)
+
+print(convert_to_int);#o/p = 44322;
+
+#convert list to tuple of lists e.g - ["happy","new","year","2021"] 
+#o/p - (["happy"],["new"],["year"],["2020"])
+
+txt_str= ["happy","new","year","2021"]
+
+tuple_ex = tuple([i] for i in txt_str);
+
+print(tuple_ex);
+
+ashish_icici = "9897257046";
+
+list_of_tuple = [("hello"),("how"),("are"),("you")];
+print(list_of_tuple);
+
+#l-ist [1, 2, 3, 4, 4, 5, 5, 5, 5, 7, 1, 1, 2, 4, 7, 8, 9, 6, 6, 6]
+#final list [5, 5, 5, 5, 1, 1, 1, 4, 4, 4, 6, 6, 6, 2, 2, 7, 7, 3, 8, 9]
+frequency_list = [1, 2, 3, 4, 4, 5, 5, 5, 5, 7, 1, 1, 2, 4, 7, 8, 9, 6, 6, 6];
+result = [i for i in frequency_list];
 
 
+def sum_two_large_numbers(str1,str2):
+  str1_len = len(str1)-1;
+  str2_len = len(str2)-1;
+
+  result="";
+
+  carry =0;
+
+  while str1_len >= 0 or str2_len >=0:
+  
+    #ternary operator: a if condition else b
+  
+    digit1 = (ord(str1[str1_len]) - 48) if str1_len > -1 else 0;
+    digit2 = (ord(str2[str2_len]) - 48) if str2_len > -1 else 0;
+  
+    sum = digit1 + digit2 + carry;
+  
+    add = int(sum%10);
+  
+    result += str(add);
+  
+    carry = int(sum / 10);
+  
+    str1_len -= 1;
+    str2_len -= 1;
+
+  if carry!=0:
+    result += str(carry);
+
+
+  return result[::-1];
+
+
+str1="58973498573498600";
+
+str2 = "4534635465654";
+print(sum_two_large_numbers(str1,str2));
