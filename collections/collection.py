@@ -71,6 +71,7 @@ print("sort():", sort_names);
 '''
 collection part 2 - Tuple: is a collection which is sorted, immutable and allows duplicates.
 
+define, access, change, update, delete, unpack, join, multiply, methods tuple.
 '''
 #Defining a tuple
 languages = ("java","python","c-sharp","rust")
