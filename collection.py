@@ -68,6 +68,76 @@ sort_names.sort(key=sort_len);
 print("sort():", sort_names);
 
 
+'''
+collection part 2 - Tuple: is a collection which is sorted, immutable and allows duplicates.
+
+'''
+#Defining a tuple
+languages = ("java","python","c-sharp","rust")
+
+#Accessing elements from tuple
+print("Accessing second and third element from tuple:",languages[-3:-1]);
+
+#changing values of tuple
+tuple_integers = (1,3,5,6,4,3);
+print("orginal tuple:",tuple_integers);
+tuple_to_list = list(tuple_integers);
+tuple_to_list.append(8);
+tuple_integers = tuple(tuple_to_list);
+print("append items to tuple:",tuple_integers);
+
+#removing element from tuple
+remove_tuple_item = list(tuple_integers);
+remove_tuple_item.pop();
+tuple_integers = tuple(remove_tuple_item);
+print("removing last element from tuple:", tuple_integers);
+
+#changing values of tuple
+update_tuple = list(tuple_integers);
+update_tuple[1] = 2;
+tuple_integers = tuple(update_tuple);
+print("second elmenent update in tuple:", tuple_integers);
+
+#deleting the tuple
+tuple_delete_ex = ("tim", "lee", "susan")
+print("before deleting the tuple:",tuple_delete_ex);
+del tuple_delete_ex;
+
+
+#unpacking tuples elements: allows you to extract values from tuple to variables
+technologies = ("spring", "react","angular","vue.js","django");
+backend_java, *frontend, backend_python = technologies;
+
+print("java backend:",backend_java);
+print("frontend technologies:", frontend);
+print("backend_python:", backend_python);
+i=0;
+print("loop through a tuple using while");  
+while i < len(technologies):
+  print(technologies[i]);
+  i+=1;
+
+#joining tuples
+tuple_of_integers = (1,2,3,4,5,5)
+tuple_of_txt = ("one","two","three","four","five")
+joining_tuples = tuple_of_integers + tuple_of_txt;
+
+print("joining tuples:",joining_tuples);
+
+#multiplying tuples elements(2 time's)
+print("multiplying tuples elements 2 times:", tuple_of_integers *2);
+
+#tuple methods: 2 built-in python method's
+
+#1- count(): 1-args, tuple.count(element(R)), return int, count number of times element occurs in tuple
+print("count(), number of times 5 occurs in tuple:",tuple_of_integers.count(5));
+
+#2- index(): 1-args, tuple.index(element(R)), return int, return the first index position of specified value occurs in tuple.
+print("index(), element 5 index position:",tuple_of_integers.index(5));
+
+
+
+
 
 
 

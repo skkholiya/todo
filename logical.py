@@ -82,8 +82,20 @@ print(list_of_tuple);
 
 #l-ist [1, 2, 3, 4, 4, 5, 5, 5, 5, 7, 1, 1, 2, 4, 7, 8, 9, 6, 6, 6]
 #final list [5, 5, 5, 5, 1, 1, 1, 4, 4, 4, 6, 6, 6, 2, 2, 7, 7, 3, 8, 9]
-frequency_list = [1, 2, 3, 4, 4, 5, 5, 5, 5, 7, 1, 1, 2, 4, 7, 8, 9, 6, 6, 6];
-result = [i for i in frequency_list];
+frequency_list = [9, 4, 3, 3, 4, 6, 5, 6, 5, 7, 1, 7, 2, 4, 7, 8, 9, 6, 6, 8];
+
+#key= counting the value occurrence in the frequency_list, then sort the list based on count. 
+result=sorted(frequency_list, key=frequency_list.count, reverse=True);
+print(result);
+  
+#remove duplicates from sorted_frequency_list
+frequency_without_duplicate = list(dict.fromkeys(result));
+
+print(frequency_without_duplicate)
+
+
+
+
 
 
 def sum_two_large_numbers(str1,str2):
