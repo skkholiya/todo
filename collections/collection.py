@@ -2,6 +2,7 @@
 #list: store multiple values in a single variable.
 #list is a collection which is ordered,changable,mutable,allows duplicate)
 
+print("---------------------- list collection ------------------------------")
 list_ex=["ordered","changable", "mutable", "allow duplicate"]
 
 
@@ -72,6 +73,7 @@ print("sort():", sort_names);
 collection part 2 - Tuple: is a collection which is sorted, immutable and allows duplicates.
 define, access, change, update, delete, unpack, join, multiply, methods tuple.
 '''
+print("--------------------------- tuple collection -------------------------");
 #Defining a tuple
 languages = ("java","python","c-sharp","rust")
 
@@ -136,8 +138,87 @@ print("count(), number of times 5 occurs in tuple:",tuple_of_integers.count(5));
 print("index(), element 5 index position:",tuple_of_integers.index(5));
 
 
+#python collections part(3) set: is a collection which is unorderd, mutable(but can add items once declared), allows duplicate.
+print("------------------------------ set collection -------------------------------");
 
+#set constructor
+language_set = set(("java","python","c#"));
+print("set constructor",language_set);
 
+#add items to set
+language_set.add("javaScript");
+print("adding items to set:",language_set);
 
+#add items from another set
+frameworks = {"spring", "django", "flask"}
+language_set.update(frameworks);
+print("add frameworks:", language_set);
+
+#set methods python
+
+#clear(): no-args, return empty set
+print("clear():",frameworks.clear());
+
+#copy(): no-args, copies orignal set items to current set
+copy_set = language_set.copy()
+print("copy():",copy_set)
+
+#differece: one-arg set.difference(set(R)), return set, return a new set contains items that exists in first set, duplicate items removed.
+fruits = {"apple","cherry","banana"}
+it = {"google","apple","microsoft"}
+difference_set = fruits.difference(it)
+print("difference():", difference_set);
+
+#difference_update: one-arg, set.difference_update(set(R)), return set, update the first set remove elements present in both set.
+copy_set = fruits.copy();
+copy_set.difference_update(it);
+print("difference update", copy_set);
+
+#discard: one-arg, set.discard(element(R)), return set, remove item from set if present, otherwise return none.
+copy_set.discard("banana")
+print("discard():",copy_set);
+
+#remove: one-arg, set.remove(element(R)), return set, remove item from set if present, otherwise return exception.
+copy_set.remove("cherry");
+print("remove():",copy_set);
+
+#intersection: one-arg, set.intersection(set(R)), return a new set, return elements present in both set.
+intersect = fruits.intersection(it);
+print(intersect);
+
+#intersection_update: multiple-args, set.intersection_update(set1(R),set2(O).....), return set, update the first set, contains
+#items present in both set.
+copy_fruits = fruits.copy()
+copy_fruits.intersection_update(it);
+print("intersection_update():",copy_fruits);
+
+#isdisjoints(): one-arg, set.isdisjoints(set1(R)), return boolean, return true if both set doesn't have any common items present.
+x={"a","b","c"}
+y={"c","f","e","d","a","x","b","c"};
+print("isdisjoint():",x.isdisjoint(y));
+
+#issubset(): one-arg, set.issubset(set1(R)), return boolean, return true if all items in the set exists in specified set.
+print("issubset():", x.issubset(y));
+
+#issuperset():one-arg, set.issuperset(set1(R))), return boolean, return true if all items in the sepecifed set exists in the original set.
+print("issuperset():", y.issuperset(x));
+
+#pop(): no-arg, return none, remove random element from the set.
+y.pop();
+print("pop():", y);
+
+#symmetric_difference(): one-arg,symmetric_difference(set1(R)), return a new set contain element that are not present in both set, 
+first_set = x.copy()
+y_copy = y.copy()
+symmetric_difference = first_set.symmetric_difference(y);
+print("symmertric_differece():", symmetric_difference);
+
+#symmetric_difference_update(): one-arg, set.symmetric_difference_update(set1(R)), return a first set elements not present in both set.
+first_set.symmetric_difference_update(y_copy)
+print("symmetric_difference_update():",first_set);
+
+#union(): multiple-arg, set1.union(set2(R)), set1.union(set2(R),set2(O)...), return a new set of all elements present in original set and all elements present in specified set,if duplicate, will appear only once (Join two sets).
+union_set = x.union(y);
+print("union():",union_set);
 
 
