@@ -221,4 +221,98 @@ print("symmetric_difference_update():",first_set);
 union_set = x.union(y);
 print("union():",union_set);
 
+print("------------------------ dict collection ------------------------")
+#dict is a collection used to store data in a key-value pair.
+#dictionary is a collection which is ordered(after 3.7) duplicate are not allowed, chanagable.
+dict_ = {"brand": "ford", "name":"mustang", "year":1994}
+print(dict_)
+
+#accessing item 
+print(dict_["brand"])
+
+#two args, dict.get(key(R),value(O)), to access the value of the specified key,if key is not present will return the specified value.
+print(dict_.get("brand","ford"));
+
+#check if key exists in dictionary or not?
+if "color" in dict_:
+  print("color is present in the dictionary")
+else:
+  print("color is not present in dictionary")
+  
+#change value in dictionary
+dict_["color"] = "white"
+
+print("adding color value", dict_)
+
+#update(), one-arg, dict.update(iterable(R)) should be key-value pair,update the value in dictionary
+dict_.update({"color":"red"})  
+  
+print("updating the color value", dict_);
+
+#del the sepecified item from dictionary, also used for delete complete dict
+del dict_["color"]
+print("deleting the color item from dictionary:", dict_);
+
+#copy(), no-args, create a copy of the dictionary
+copy_dict = dict_.copy();
+#dict(),one-args,dict(dict), take argument specified dict to copy items
+copy_dict2 = dict(dict_);
+print("copy()",copy_dict)
+print("copy_dict2", copy_dict2);
+
+#clear(), no-args, make clear the dictionary.
+print("clear() ", copy_dict2.clear());
+
+#printing all the Key in dict:
+print("printing all the keys in dict")
+for key in copy_dict.keys():
+  print(key);
+  
+#printing all the items in dict:
+print("printing all the items in dict")
+for item in copy_dict.items():
+  print(item)
+
+#printing all the values in dict:
+print("printing all the values in dict")
+for value in copy_dict.values():
+  print(value);
+  
+#nested dictionary: we can also create dictionary inside dictionary in python
+child_one = {"name":"rahul","age":30}
+child_two = {"name":"sejal","age":40}
+child_three = {"name":"meera","age":50}
+
+my_family = {"child_one":child_one,"child_two":child_two,"child_three":child_three}
+print(my_family);  
+
+#set methods:
+#fromkeys(): two-args, dict.fromkeys(keys(R any iterable of new dict),value(O default None)), return new dictionary, return a new dictionary with specified key and specified values
+keys=["a","b","c","d"]
+new_dict = copy_dict.fromkeys(keys)
+print("fromkeys():",new_dict);
+
+#items():no-args, return view object, the view obj return key-value pairs of the dictionary as tuples in a list
+print("items():",copy_dict.items());
+  
+#keys(): no-args, return view object, the view obj return keys of the dictionary as a list.
+print("keys():",copy_dict.keys());
+
+#values(): no-args, return view object, the view obj return values of the dictionary as a list.
+print("values():",copy_dict.values());
+
+#pop(): two-args, dict.pop(keyname(R),value(O)), return pop item, value is used for when the keyname is not exist it will return the value.
+print("pop():",copy_dict.pop("color","no key present"))
+
+#popitem(): no-args, return poped element, it will poped out the last item from the dictionary.
+print("popitem():",copy_dict.popitem());
+print(copy_dict)
+
+#setdeault(): two-args, dict.setdefault(keyname(R),value(O)), return the value of the item with the specified key.
+#if the key does not exist, insert a key with specified value.
+#value: if the key doesn't exist, the value become the key-value
+copy_dict.setdefault("color","red")
+print(copy_dict);
+
+
 
