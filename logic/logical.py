@@ -1,3 +1,6 @@
+import sys;
+import functions_ as fp;
+
 # . Program to remove duplicates from a list of integers
 _list=[1,2,4,3,6,4,2,7,9,44,3,3,5,21,44];
 #Storing the list elements as dictonary keys(doesn't allow duplicate keys)
@@ -93,45 +96,235 @@ frequency_without_duplicate = list(dict.fromkeys(result));
 
 print(frequency_without_duplicate)
 
-
-
-
-
-
-def sum_two_large_numbers(str1,str2):
-  str1_len = len(str1)-1;
-  str2_len = len(str2)-1;
-
-  result="";
-
-  carry =0;
-
-  while str1_len >= 0 or str2_len >=0:
-  
-    #ternary operator: a if condition else b
-  
-    digit1 = (ord(str1[str1_len]) - 48) if str1_len > -1 else 0;
-    digit2 = (ord(str2[str2_len]) - 48) if str2_len > -1 else 0;
-  
-    sum = digit1 + digit2 + carry;
-  
-    add = int(sum%10);
-  
-    result += str(add);
-  
-    carry = int(sum / 10);
-  
-    str1_len -= 1;
-    str2_len -= 1;
-
-  if carry!=0:
-    result += str(carry);
-
-
-  return result[::-1];
-
-
+#sum of large numbers
 str1="58973498573498600";
-
 str2 = "4534635465654";
-print(sum_two_large_numbers(str1,str2));
+print(fp.sum_two_large_numbers(str1,str2));
+
+#Convert list of string into sorted list of integer
+list_of_string = ["2","6","8","1","3","5","132","34"];
+list_of_integers = [int(x) for x in list_of_string]
+list_of_integers.sort()
+print("list of integers:",list_of_integers);
+
+#15 Python program to create a list of tuples from given list having number and its cube in each tuple
+
+list_of_numbers = [2,3,4,5,3,6,6,25]
+#getting outcome from list then creating tuple(outcome,cube_of_outcome) e.g - (2,2*2*2) = 8
+list_of_tuples = [(i, i ** 3) for i in list_of_numbers];
+print(list_of_tuples);
+
+#Program to convert a tuple to a string
+languages = ("java","python","rust", "c-sharp")
+int_tupl = (1,2,3,4,5)
+int_to_string = ",".join(str(outcome) for outcome in int_tupl);
+tuple_to_string = " ".join(languages);
+print(tuple_to_string);
+print(int_to_string);
+
+#Merge list of tuple into list by joining the strings
+lang = [('PHP', 'Laravel'), ('JavaScript', 'Node.js'), ('Java', 'Spring'), ('Python','Flask'), ('C#','ASP.NET')] 
+#Joining the tuple elements with - seperator
+output_lang = ["-".join(i) for i in lang]
+print(output_lang);
+#o/p- [PHP-Laravel, "JavaScript-Node.js", "Java-Spring", "Python-Flask", "C#-ASP.NET"]
+
+#The original list 1 : [[1, 4, 5], [8, 7], [2]]
+#The original list 2 : [[‘g’, ‘f’, ‘g’], [‘f’, ‘r’], [‘u’]]
+#The paired list of tuple is : [(1, ‘g’), (4, ‘f’), (5, ‘g’), (8, ‘f’), (7, ‘r’), (2, ‘u’)] 
+
+#Pair and combine nested list to tuple list
+
+char = [['a', 's', 'c', 'i','i'], ['c','h', 'a', 'r'], ['c','o','d','e']]
+
+values = [[97, 115, 99,105,105], [99, 104, 97,114], [99,111,100,101]]
+
+#first loop for zipping/pairing together sub array of the both list. second loop for zipping/pairing the sub array's element togther.
+pair_and_combine = [ (sub_index1, sub_index2) for (index1,index2) in zip(char,values) for (sub_index1,sub_index2) in zip(index1,index2)]
+
+#print(pair_and_combine);
+
+
+#The original list 1 : [('key1', 4), ('key3', 6), ('key2', 8)]
+#The original list 2 : [('key2', 1), ('key1', 4), ('key3', 2)]
+#The grouped summation tuple list is : [('key2', 9), ('key1', 8), ('key3', 8)]
+
+list1=[('key1', 4), ('key3', 6), ('key2', 8)]
+list2=[('key2', 1), ('key1', 4), ('key3', 2)]
+
+#converting to dict to matching the keys.
+dict_ = (dict(list1));
+
+
+
+for i in list2:
+  #checking if tuple key is present in dict
+  if i[0] in dict_:
+    #adding the dict value with tuple value 
+    dict_[i[0]]=dict_.get(i[0]) + i[1]; 
+
+dict_to_list_tuple = [ (x,y) for x,y in dict_.items()]
+print(dict_to_list_tuple);
+
+
+'''
+The original list is : [(‘geeks’, ‘for’, ‘geeks’), (‘computer’, ‘science’, ‘portal’)]
+The joined data is : [‘geeks for geeks’, ‘computer science portal’] 
+'''
+#Join tuple elements in a list
+list_of_tuples = [("java","python","javascript"), ("spring","django","node.js")]
+#seprating the tuples value using " "  
+result = [" ".join(i) for i in list_of_tuples]
+print(result);
+
+'''
+The original list : [(‘key1’, [3, 4, 5]), (‘key2’, [1, 4, 2]), (‘key3’, [9, 3])]
+The list tuple attribute summation is : [(‘key1’, 12), (‘key2’, 7), (‘key3’, 12)] 
+'''
+
+
+orignal_list = [('rating1', [7, 4, 5]), ('rating2', [1, 4, 2,6]), ('rating3', [9, 3,5])]
+#adding all sub array elements using sum function
+result = [(i,sum(j)) for i,j in orignal_list]
+print(result)
+
+'''
+Input : [(1, 2), (3, 4, 5), (6, 7, 8, 9)]
+Output : [(2, 1), (5, 4, 3), (9, 8, 7, 6)]
+'''
+_input = [(1, 2), (3, 4, 5), (6, 7, 8, 9)]
+#passing the tuple outcome to the sorted method then reverse the tuple
+reverse_tuple = [ tuple(sorted(i,reverse=True)) for i in _input]
+print(reverse_tuple)
+#print(dir(_input)) 
+
+'''
+The original list 1 : [('Geeks', 1), ('for', 2), ('Geeks', 3)]
+The original list 2 : [4, 5, 6]
+The modified resultant list of tuple : [('Geeks', 4), ('for', 5), ('Geeks', 6)]
+'''
+list1= [('Geeks', 1), ('for', 2), ('Geeks', 3)]
+list2= [4, 5, 6]
+
+#for list of tuples first argument(i.e. Geeks ...) setting as it is.
+#for second argument of list of tuples(i.e 1,2,3) we zipping it to with list2 arguments.
+returnList = [ (i[0],j) for i,j in zip(list1,list2)]
+  
+print(returnList)
+
+dict_example = {
+		"name" : "suresh",
+		 "age" :  25,
+		 "current city:" : "noida",
+		 "Hometown:" : "Almora",
+		 "contact no": 7982116616
+            	 }
+
+#storing key,value in list of tuples
+result = [(i,j) for i,j in dict_example.items()]
+
+print(result) #[('name', 'suresh'), ('age', 25), ('current city:', 'noida'), ('Hometown:', 'Almora'), ('contact no', 7982116616)]
+
+'''
+The original list is : [(5, 6, 7), (7, 2, 4, 6), (6, 6, 7), (6, 10, 8)]
+The Tuple List after removal of element : [(5, 7), (7, 2, 4), (7, ), (10, 8)]
+'''
+original_list = [(5, 6, 7), (7, 2, 4, 6), (6, 6, 7), (6, 10, 8)]
+
+original_list2 = [("hello","hi","there"), ("hello", "java", "python"),("google","hello")]
+
+remove_element2 = "hello";
+
+#suppose we want to remove 6 from all list of tuples
+remove_element = 6;
+
+result2 = [ tuple(j for j in i if j!=remove_element2) for i in original_list2]
+
+#storing only those elements to tuple which is not equal to 6
+result = [ tuple(j for j in i if j!= remove_element) for i in original_list]
+
+'''
+[('Python', 'tutorialspoints'), ('Management', 'other'), ('Django', 'tutorialspoints'), ('React',
+'tutorialspoints'), ('Social', 'other'), ('Business', 'other')]
+
+{'tutorialspoint': [('Python', 'tutorialspoints'), ('Django', 'tutorialspoints'), ('React', 'tutorialspoints')],
+'other’: [('Management', 'other'), ('Social', 'other'), ('Business', 'other')]}
+
+'''
+tutorial=[('Python', 'it'), ('Management', 'other'), ('Django', 'it'), ('React',
+'it'), ('Social', 'other'), ('Business', 'other')]
+
+output={}
+
+for (i,j) in tutorial:
+  if j in output:
+  #check if value is present as key in dict, append tuple to list.
+    output[j].append((i,j))
+
+  else:
+  #assinging second value to as key and store list of tuple as value in dictionary.
+    output[j]= [(i,j)]
+    
+print(output);
+
+'''
+Input: {34, 21, 56, 42, 89, 90, -1}
+Output: {-1, 21}
+'''
+def find_n_minimumele(arg_list,N):
+  output_list = [];
+  #checking empty condition
+  if len(arg_list) == 0:
+    return output_list;
+  
+  #no of element we want to display from list
+  for n in range(N):
+    max_value = sys.maxsize; #return int max value: 9223372036854775807
+    #iterating the list
+    for list_index in range(len(arg_list)):
+      # replacing with max value, if list element is less than max value 
+      if arg_list[list_index] < max_value:
+        max_value = arg_list[list_index]
+    
+    #storing the minnimum element to output list
+    output_list.append(max_value)
+    #removing the mininmum element from list, because it will occur in next iteration 
+    arg_list.remove(max_value)
+  return output_list;    
+
+input_list = [34, 21, 56, 42, 89, 90, -1]
+N=2
+print(find_n_minimumele(input_list,N));
+
+'''
+Input : [(‘a’, ‘e’), (‘b’, ‘x’), (‘b’, ‘x’), (‘a’, ‘e’), (‘b’, ‘x’)]
+Output :
+(‘a’, ‘e’) – 2
+(‘b’, ‘x’) – 3
+'''
+#list_of_tuples = [('a', 'e'), ('b', 'x'), ('b', 'x'), ('a', 'e'), ('b', 'x')]
+
+
+def duplicate_list_of_tuples(list_of_tuples):
+  #if no duplicate tuples there if will return "No Duplicate"
+  flag = False;
+  #iterate tuples, excluding duplicate
+  for (i,j) in set(list_of_tuples):
+    #it will count number of tuples present in the set
+    count = list_of_tuples.count((i,j))
+    if(count > 1):
+      flag = True;
+      print((i,j),"-",count)
+  if flag is False:
+    print("No Duplicate")
+
+list_of_tuples = [('a', 'e'), ('b', 'x'), ('b', 'x'), ('a', 'e'), ('b', 'x')]   
+duplicate_list_of_tuples(list_of_tuples);  
+
+#method 2:
+dict_res = {}
+for i in list_of_tuples:
+  dict_res[i] = dict_res.get(i,0) + 1;
+    
+    
+print(dict_res)
