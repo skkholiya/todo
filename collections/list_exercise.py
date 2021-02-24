@@ -273,3 +273,61 @@ get_frequency = [10, 10, 10, 10, 20, 20, 20, 20, 40, 40, 50, 50, 30]
 obj = dict(collections.Counter(get_frequency))
 print(obj); #o/p {10: 4, 20: 4, 40: 2, 50: 2, 30: 1}
 
+
+#31. Write a Python program to count the number of elements in a list within a specified range. 
+def count_numbers(list_ex,start, end):
+  count = 0;
+  for i in list_ex:
+    if i in range(start,end):  
+      count+=1;
+  return count;
+list1 = [211,23,322,412,125,6,711,90]
+print(count_numbers(list1,0,200));
+
+
+#32. Write a Python program to check whether a list contains a sublist.
+org_list = [3,4,5,3,2,4,6,3]
+subset = [5,3,2,1]
+isSubSet = " ".join(map(str,subset)) in " ".join(map(str,org_list))
+#or
+isSubsetUsingSet = set(subset).issubset(org_list);
+print(isSubsetUsingSet);
+print(isSubSet);
+
+#33. Write a Python program to generate all sublists of a list.
+
+def generate_sublists(x):
+  return_list = [] 
+  for i in range(0,len(x)+1):
+    y = [list(j) for j in (itertools.combinations(x,i))] 
+    if len(y)>0:
+      return_list.extend(y)
+  return return_list;
+    
+x=['x','y','z']
+print(generate_sublists(x));
+
+#34. Write a Python program using Sieve of Eratosthenes method for computing primes upto a specified number.
+def sieve_of_eratosthenes(n):
+  return_list = [True for i in range(n+1)];
+  start = 2;
+  while(start*start <= n):
+    #finding multiple of the specified number.
+    for i in range(start*start,n+1,start):
+    #setting false, the multiple of the number.
+      return_list[i] = False;
+    start +=1;
+
+  for i in range(2,n+1):
+    if return_list[i]:
+      print(i);
+
+sieve_of_eratosthenes(10);
+
+#35. Write a Python program to create a list by concatenating a given list which range goes from 1 to n. 
+n=5;
+st_list = ['p','q']
+out_st_list = ["{}{}".format(i,j) for i in st_list for j in range(1,n)]
+print(out_st_list);
+
+
