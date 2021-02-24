@@ -47,3 +47,8 @@ print(file_read1.read());
 os.remove("write_mode.txt") if os.path.exists("write_mode.txt") else print("file doesn't exist");
   
 #os.rmdir(dir_name) : delete only empty folders.  
+if os.path.exists("abc"):
+  os.rmdir("abc")
+else:
+  print("dir. Not Exist!!!!")
+
