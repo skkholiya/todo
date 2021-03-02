@@ -1,6 +1,7 @@
 import random as rand
 import itertools
 import collections
+import operator
 #1 Write a Python program to sum all the items in a list. 
 
 def sum_of_all_items(list1):
@@ -329,5 +330,181 @@ n=5;
 st_list = ['p','q']
 out_st_list = ["{}{}".format(i,j) for i in st_list for j in range(1,n)]
 print(out_st_list);
+
+#36. Write a Python program to get variable unique identification number or string. 
+a=49993
+print(format(id(a),"x"));
+
+#37 Write a Python program to find common items from two lists. 
+color1 = "Red", "Green", "Orange", "White"
+color2 = "Black", "Green", "White", "Pink"
+print(set(color1) & set(color2));
+
+#38. Write a Python program to change the position of every n-th value with the (n+1)th in a list.
+'''Sample list: [0,1,2,3,4,5]
+Expected Output: [1, 0, 3, 2, 5, 4]
+ '''
+sample_input = [0,1,2,3,4,5]
+def change_position(sample_input):
+
+  for i in range(0,len(sample_input),2):
+    temp = sample_input[i];
+    sample_input[i]=sample_input[i+1]
+    sample_input[i+1]=temp;  
+    #sample_input[i],sample_input[i+1] = sample_input[i+1],sample_input[i];
+  return sample_input
+
+print(change_position(sample_input));
+ 
+
+#39. Write a Python program to convert a list of multiple integers into a single integer.
+sampl_list = [11, 33, 50] 
+list_to_int =int("".join( [str(i) for i in sampl_list]))
+print(type(list_to_int));
+
+  
+#40. Write a Python program to split a list based on first character of word.
+word_list = ['be','have','do','say','get','make','go','know','take','see','come','think',
+     'look','want','give','use','find','tell','ask','work','seem','feel','leave','call']  
+
+def split_by_first_character(word_list):
+     
+  for letter,word in itertools.groupby(sorted(word_list), operator.itemgetter(0)):
+    print(letter)
+    for words in word:
+      print(words);
+
+split_by_first_character(word_list);
+
+#41. Write a Python program to create multiple lists.
+list_of_dict = {}
+#creating list for first 10 positive numbers. i.e key=integer, value=list
+for i in range(1,11):
+  list_of_dict[i] = [];
+print(list_of_dict);
+
+#42. Write a Python program to find missing and additional values in two lists. 
+list1 = ['a','b','c','d','e','f']
+list2 = ['d','e','f','g','h']
+
+missing_value_list2 = " ".join([i for i in list1 if i not in list2])
+additional_value_list2 = " ".join([i for i in list2 if i not in list1])
+print("missing value in list2:",missing_value_list2);
+print("additional value in list2:",additional_value_list2);
+
+#43. Write a Python program to split a list into different variables.
+sample_list = ["steve jobs","Huston","python"]
+
+person, city, language = sample_list
+
+print(person,city,language)
+
+#44. Write a Python program to generate groups of five consecutive numbers in a list.
+generate_group = [ [i + j*5 for i in range(1,6)] for j in range(5)]
+print(generate_group);
+
+
+
+
+#45. Write a Python program to convert a pair of values into a sorted unique array.
+pair_of_value = [(1,2), (3,4),(1,2),(5,6),(7,8),(1,2),(3,4),(3,4),(7,8),(9,10)]
+sorted_unique_array = list(set(j for i in pair_of_value for j in i))
+print(sorted_unique_array)
+
+
+
+
+#46. Write a Python program to select the odd items of a list.
+list_of_object = [1,2,3,4,5,6,7,8,9]
+odd_items = [i for i in list_of_object if i%2!=0]
+print(odd_items);
+
+
+
+
+
+#47. Write a Python program to insert an element before each element of a list.
+ls_c = ["red","black","green"]
+return_list_of_colors = [i for element in ls_c for i in ('c',element)]
+print(return_list_of_colors);
+
+
+
+
+
+#48. Write a Python program to print a nested lists (each list on a new line) using the print() function.
+colors = [["RED"], ["GREEN"],["BLACK"]]
+for i in colors:
+  print(i);
+
+
+
+
+#49. Write a Python program to convert list to list of dictionaries.
+list_of_color = ["Black", "Red", "Maroon", "Yellow"]
+color_code =  ["#000000", "#FF0000", "#800000", "#FFFF00"];
+dict_colors = [{"color_name":k,"color_value":v} for k,v in zip(list_of_color,color_code)]
+print(dict_colors);
+
+
+
+#50. Write a Python program to sort a list of nested dictionaries. 
+my_list = [{'key': {'subkey': 1}}, {'key': {'subkey': 10}}, {'key': {'subkey': 5}}]
+
+return_list = sorted(my_list, key=lambda x : x['key']['subkey'], reverse = True)
+print(return_list)
+
+
+
+#51. Write a Python program to split a list every Nth element.
+n=3
+list_split = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n']
+return_listt = [[list_split[j] for j in range(i,len(list_split),n)] for i in range(n)]
+print(return_listt);
+
+
+
+
+#52. Write a Python program to compute the difference between two lists
+color_list1 = ["red", "orange", "green", "blue", "white"];
+color_list2 =  ["black", "yellow", "green", "blue"];
+
+difference_list1 = set(color_list1).difference(set(color_list2));
+print("difference in list1:",difference_list1);
+difference_list2 = set(color_list2).difference(set(color_list1));
+print("diffrence in list2:",difference_list2);
+
+
+
+#53. Write a Python program to create a list with infinite elements.
+x = itertools.count();
+print(next(x));
+print(next(x));
+print(next(x));
+print(next(x));
+print(next(x));
+
+
+
+
+#54. Write a Python program to concatenate elements of a list.
+list_of_fruits = ["red", "orange" , "green"]
+
+#concatenating with -
+#print(list_of_fruits(
+join_with_hyfen = " - ".join(list_of_fruits);
+print(join_with_hyfen);
+join_with_quote = ''.join(list_of_fruits);
+print(join_with_quote);
+
+
+
+#55. Write a Python program to remove key values pairs from a list of dictionaries.
+original_list = [{'key1':'value1', 'key2':'value2'}, {'key1':'value3', 'key2':'value4'}]
+remove_value = [ {k,v} for list_items in original_list for k,v in list_items.items() if k !='key1']
+print(remove_value);
+
+
+
 
 
