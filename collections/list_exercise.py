@@ -1,5 +1,6 @@
 import random as rand
 import itertools
+import ast
 import collections
 import operator
 #1 Write a Python program to sum all the items in a list. 
@@ -491,7 +492,6 @@ print(next(x));
 list_of_fruits = ["red", "orange" , "green"]
 
 #concatenating with -
-#print(list_of_fruits(
 join_with_hyfen = " - ".join(list_of_fruits);
 print(join_with_hyfen);
 join_with_quote = ''.join(list_of_fruits);
@@ -503,6 +503,178 @@ print(join_with_quote);
 original_list = [{'key1':'value1', 'key2':'value2'}, {'key1':'value3', 'key2':'value4'}]
 remove_value = [ {k,v} for list_items in original_list for k,v in list_items.items() if k !='key1']
 print(remove_value);
+
+
+
+
+#56 Group of the age 30+ in the list of dictionary
+
+list_of_dict = [{"first_name":"Zahir","last_name":"Khan","age":40,"Country":"India"},
+		{"first_name":"Rashid","last_name":"Khan","age":34,"Country":"Afganistan"},
+		{"first_name":"Parthiv","last_name":"Patel","age":35,"Country":"India"},
+		{"first_name":"Aksar","last_name":"Patel","age":25,"Country":"India"},
+		{"first_name":"Ben","last_name":"Strokes","age":29,"Country":"England"}]
+
+return_age_30 = list(filter(lambda x:x.get("age")>=30,list_of_dict));
+
+print(return_age_30)
+
+
+#57. Write a Python program to convert a string to a list.
+string_ex = "['Red', 'Green', 'White']"
+string_list = ast.literal_eval(string_ex);
+#This can be used for safely evaluating strings containing Python expressions from untrusted sources without the need to parse the values oneself.
+print(type(string_list)); #o/p -class 'list'
+
+
+
+
+#57. Write a Python program to check whether all items of a list is equal to a given string.
+string_eg = "google"
+list_of_com = ["google","apple","microsoft","facebook"]
+result = all(string_eg == i for i in list_of_com)
+print(result);
+
+
+
+#58. Write a Python program to replace the last element in a list with another list.
+lis1 = [1, 3, 5, 7, 9, 10]
+lis2 = [2, 4, 6, 8]
+lis1[-1:] = lis2;
+print("58:",lis1);
+
+
+
+#59. Write a Python program to check whether the n-th element exists in a given list.
+list_of_int = [1,2,3,4,5,6,7,8,9]
+len_x = len(list_of_int)-1;
+if len(list_of_int)>0:print("59.",list_of_int[len_x])
+
+
+
+#60.Write a Python program to find a tuple, the smallest second index value from a list of tuples.
+list_of_tuples = [(1,2),(3,1),(5,6),(7,3),(9,2)]
+list_of_tuples.sort(key = lambda x:x[1])
+print("60:",list_of_tuples[0]);
+
+
+
+#61. Write a Python program to create a list of empty dictionaries.
+list_of_empty_dict = []
+#list_of_empty_dict = [{} for _ in range(5)]
+for i in range(3):
+  list_of_empty_dict.append(dict());
+
+print("61. ",list_of_empty_dict)
+
+
+
+
+#62. Write a Python program to print a list of space-separated elements.
+list_example = [1,2,3,4,5,6,7,8,9]
+#print(*list_example)
+for i in list_example:
+  print(i,end=" ");
+  
+
+#63. Write a Python program to insert a given string at the beginning of all items in a list.
+print();
+sample_list = [1,2,3,4]
+x=["emp{}".format(i) for i in sample_list]
+print(x);
+
+
+
+#64. Write a Python program to iterate over two lists simultaneously. 
+list1 = [1,2,3,4,5,6]
+list2 = ['a','b','c','d','e','f']
+
+for l1,l2 in zip(list1,list2):
+  print(l1,l2)
+
+
+
+
+#65. Write a Python program to move all zero digits to end of a given list of numbers.
+
+list_ex = [3, 4, 0, 0, 0, 6, 2, 0, 6, 7, 6, 0, 0, 0, 9, 10, 7, 4, 4, 5, 3, 0, 0, 2, 9, 7, 1];
+list_ex.sort(reverse=True)
+print("65",list_ex);
+
+
+
+
+#66. Write a Python program to find the list in a list of lists whose sum of elements is the highest.
+list_of_lists = [[1,2,3], [4,5,6], [10,11,12], [7,8,9]]
+highest_sum = list_of_lists[0];
+for i in range(1,len(list_of_lists)):
+  if sum(highest_sum) < sum(list_of_lists[i]):
+    highest_sum = list_of_lists[i];
+
+print("66. highest sum in list_of_lists:",highest_sum)
+
+
+
+
+#67. Write a Python program to find all the values in a list are greater than a specified number. 
+specified_number = 50;
+list_int = [53,23,66,23,5,6,9]
+return_lis = [i for i in list_int if specified_number<i]
+print("67.",return_lis);
+
+
+#68. Write a Python program to extend a list without append. 
+lis1 = [10, 20, 30]
+lis2 = [40, 50, 60]
+lis3 = lis2 + lis1;
+print(lis3)
+
+
+
+#69. Write a Python program to remove duplicates from a list of lists.
+list_of_int = [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]
+return_list = []
+for i in list_of_int:
+  if i not in return_list:
+    return_list.append(i);
+  
+print("69.",return_list)
+
+
+#70. Write a Python program to get the depth of a dictionary. 
+list_of_string = ['abcd', 'abc', 'bcd', 'bkie', 'cder', 'cdsw', 'sdfsd', 'dagfa', 'acjd']
+#Items start with a from the said list:
+start_with_a = [i for i in list_of_string if i.startswith('a')]
+print("70",start_with_a);#['abcd', 'abc', 'acjd']
+#Items start with d from the said list:
+start_with_d = [i for i in list_of_string if i.startswith('d')]
+print("start_with_d:",start_with_d);#['dagfa']
+#Items start with w from the said list:
+start_with_w = [i for i in list_of_string if i.startswith('w')] #[]
+print("start_with_w:",start_with_w);
+
+
+
+list_of_iterable = [{},{},{}]
+list_of_iterable1 = [{1,2},{},{}]
+res1 = all(not i for i in list_of_iterable)
+print(res1);
+
+
+
+
+#72. Write a Python program to flatten a given nested list structure.
+nested_list = [0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]
+flatten_list = []
+print("type", isinstance(nested_list[2],list));
+for i in nested_list:
+  if isinstance(i,list):
+    for ele in i:
+      flatten_list.append(ele);
+      
+  else:
+    flatten_list.append(i);
+print("72.",flatten_list);
 
 
 
