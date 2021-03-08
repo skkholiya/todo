@@ -1,4 +1,7 @@
-
+import collections
+from collections import defaultdict
+import itertools
+import json
 #Dictionary Question
 #1. Write a Python program to sort (ascending and descending) a dictionary by value.
 dict_ex = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
@@ -274,4 +277,141 @@ num = {'n1': [2, 3, 1], 'n2': [5, 1, 2], 'n3': [3, 2, 4]}
 sort_num = {x : sorted(y) for x,y in num.items()}
 print(sort_num)
 
+
+
+#29. Write a Python program to remove spaces from dictionary keys.
+dic_ex = {'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}
+return_dict = {}
+for i,j in dic_ex.items():
+  key_ = i.replace(" ","")
+  return_dict[key_]=j;
+  
+print(return_dict);
+
+
+
+#30. Write a Python program to get the top three items in a shop.
+sample_data = {'item1': 45.50, 'item2':35,'item4':55, 'item3': 41.30,  'item5': 24}
+x = sorted(sample_data.items(),key = lambda x:x[1],reverse= True);
+print(x[:3]);
+
+
+
+#31. Write a Python program to get the key, value and item in a dictionary. 
+sample_data = {'item1': 45.50, 'item2':35,'item4':55, 'item3': 41.30,  'item5': 24}
+for key,value in sample_data.items():
+  print("item:",(key,value),"key",key,"value",value);
+  
+  
+#32. Write a Python program to print a dictionary line by line.
+nested_dic =  {'Aex':{'class':'V',
+        'rolld_id':2},
+        'Puja':{'class':'V',
+        'roll_id':3}}  
+        
+for key,value in nested_dic.items():
+  print(key);
+  for i,j in value.items():
+    print(i,j);
+ 
+ 
+ 
+    
+#33. Write a Python program to check multiple keys exists in a dictionary.
+student = {
+  'name': 'Alex',
+  'class': 'V',
+  'roll_id': '2'
+}
+
+print(student.keys() >= {'name','class'});
+print(student.keys() >= {'name','alex'});
+print(student.keys() >= {'name','roll_id'});
+
+
+
+
+#34. Write a Python program to count number of items in a dictionary value that is a list.
+dict_ =  {'Alex': ['subj1', 'subj2', 'subj3'], 'David': ['subj1', 'subj2']}
+count = 0;
+for value in dict_.values():
+  for i in value:
+    count +=1;
+    
+print(count);
+
+
+
+
+#35. Write a Python program to sort Counter by value.
+xx={'Math':81, 'Physics':83, 'Chemistry':87}
+x= sorted(xx.items(),key= lambda x:x[1],reverse = True);
+print(x)
+
+
+
+#36. Write a Python program to create a dictionary from two lists without losing duplicate values.
+class_list = ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII']
+id_list = [1, 2, 2, 3]
+d = defaultdict(set)
+for i,j in zip(class_list,id_list):
+  d[i].add(j);  
+print(d)
+
+
+
+#37. Write a Python program to replace dictionary values with their average.
+score ={'Math':81, 'Physics':83, 'Chemistry':87}
+avg = int(sum(score.values())/len(score))
+return_lis = {}
+for i in score.keys():
+  return_lis[i] = avg;  
+print(return_lis)
+
+
+
+
+#38. Write a Python program to match key values in two dictionaries. 
+x = {'key1': 1, 'key2': 3, 'key3': 2}
+y = {'key1': 1, 'key2': 2}
+
+for key,value in set(x.items()) & set(y.items()):
+  print(key,"present in both dict.")
+  
+  
+
+#39. Write a Python program to store a given dictionary in a json file.
+d = {"students":[{"firstName": "Nikki", "lastName": "Roysden"},
+               {"firstName": "Mervin", "lastName": "Friedland"},
+               {"firstName": "Aron ", "lastName": "Wilkins"}],
+"teachers":[{"firstName": "Amberly", "lastName": "Calico"},
+         {"firstName": "Regine", "lastName": "Agtarap"}]}
+         
+         
+to_json = json.dumps(d)
+print(type(to_json))
+
+
+
+
+#40. Write a Python program to create a dictionary of keys x, y, and z where each key has as value a list from 11-20, 21-30, and 31-40 respectively. Access the fifth value of each key from the dictionary.
+eg_dic = {'x': [11, 12, 13, 14, 15, 16, 17, 18, 19],
+'y': [21, 22, 23, 24, 25, 26, 27, 28, 29],
+'z': [31, 32, 33, 34, 35, 36, 37, 38, 39]}
+
+for value in eg_dic.values():
+  if isinstance(value,list) and len(value)>=4:
+    print(value[4])
+    
+    
+#41. Write a Python program to drop empty Items from a given Dictionary.    
+dic = {'c1': 'Red', 'c2': 'Green', 'c3': None}
+return_dic = {k:v for k,v in dic.items() if v is not None}
+print(dic)
+
+
+#42. Write a Python program to filter a dictionary based on values.
+name_dic = {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}
+return_greater_175 = filter(lambda x: x[1]>170,name_dic.items())
+print(dict(return_greater_175))
 

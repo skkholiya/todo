@@ -680,3 +680,142 @@ print("72.",flatten_list);
 
 
 
+#73. Write a Python program to remove consecutive duplicates of a given list.
+original_list = [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]
+unique_list = []
+for i in original_list:
+  if i not in unique_list:unique_list.append(i);
+print("unique list:",unique_list);
+
+
+
+#74. Write a Python program to pack consecutive duplicates of a given list elements into sublists
+eg_list = [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]
+return_sub_list = []
+
+for i,j in itertools.groupby( eg_list, key=lambda x:x):
+ 
+  return_sub_list.append(list(j))
+
+'''
+for i in range(0,len(eg_list)):
+  if [eg_list[i]] not in return_sub_list:
+    return_sub_list.append([eg_list[i]]);
+  elif [eg_list[i]] in return_sub_list:
+    
+    index = return_sub_list.index([eg_list[i]])
+    print(index)
+    return_sub_list[index].append(eg_list[i]);
+'''
+print("74.",return_sub_list); #o/p: 
+
+#75. Write a Python program to create a list reflecting the run-length encoding from a given list of integers or a given list of characters.
+
+#given_list = [1, 1, 2, 3, 4, 4.3, 5, 1]
+given_list = "automatically"
+return_list = []
+for i,j in itertools.groupby( given_list, key=lambda x:x):
+    return_list.append([len(list(j)),i]);
+
+print(return_list)
+
+
+
+
+#76. Write a Python program to create a list reflecting the modified run-length encoding from a given list of integers or a given list of characters.
+'''
+[1, 1, 2, 3, 4, 4, 5, 1]
+List reflecting the modified run-length encoding from the said list:
+[[2, 1], 2, 3, [2, 4], 5, 1]
+Original String:
+aabcddddadnss
+List reflecting the modified run-length encoding from the said string:
+[[2, 'a'], 'b', 'c', [4, 'd'], 'a', 'd', 'n', [2, 's']]
+'''
+
+giv_lis = [1, 1, 2, 3, 4, 4, 5, 1]
+return_lis = [] 
+for i,group in itertools.groupby(giv_lis,key=lambda x:x):
+  x = list(group)
+  return_lis.append(x) if len(x) > 1 else return_lis.append(i)
+
+print(return_lis);
+
+
+
+
+#77. Write a Python program to decode a run-length encoded given list.
+def decode_run_length_list(lis):
+  print(lis);
+  return_lis = []
+  for i in lis:
+    if isinstance(i,list):
+      for j in i:
+        return_lis.append(i[1]);
+    else:
+      return_lis.append(i); 
+  return return_lis;
+    
+lis = [[2, 1], 2, 3, [2, 4], 5, 1]
+print(decode_run_length_list(lis))
+
+
+
+#78. Write a Python program to split a given list into two parts where the length of the first part of the list is given. 
+
+def split_two_parts(org_lis, n):
+  length = int(len(org_list)/n)
+  return tuple([org_lis[0:length+1]]+[org_lis[length+1:]])
+
+org_lis = [1, 1, 2, 3, 4, 4, 5, 1]
+n = 3
+print(split_two_parts(org_lis, n))
+
+
+#79. Write a Python program to remove the K'th element from a given list, print the new list.
+lis = [1, 1, 2, 3, 4, 4, 5, 1]
+element = 2
+
+new_list = [i for i in lis if i!=element]
+print(new_list)
+
+#80. Write a Python program to insert an element at a specified position into a given list.
+position = 3
+add_element = 12
+givn_list = [1, 1, 2, 3, 4, 4, 5, 1]
+
+def insert_into_list(ele,lis,indx):
+  for i in range(0,len(lis)):
+    if indx-1 == i:
+      lis[i] = ele
+  return lis;
+  
+print("80.",insert_into_list(add_element,givn_list,position))
+
+
+
+#81. Write a Python program to extract a given number of randomly selected elements from a given list.
+listOfInt = [1, 1, 2, 3, 4, 4, 5, 1]
+elements  = 3
+rand.shuffle(listOfInt)
+print(listOfInt[0:elements]);
+
+
+#82. Write a Python program to generate the combinations of n distinct objects taken from the elements of a given list.
+combination =  [1, 2, 3, 4, 5, 6, 7, 8, 9] 
+return_combi = []
+for index in itertools.combinations(combination,2):
+  return_combi.append(list(index))
+
+print(return_combi);
+
+
+
+#83. Write a Python program to round every number of a given list of numbers and print the total sum multiplied by the length of the list.
+nums = [22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20, -5.20, 17.50]
+sum_of_nums = 0;
+for i in nums:
+  sum_of_nums += round(i)
+  
+print(sum_of_nums);
+
