@@ -3,6 +3,7 @@ import itertools
 import ast
 import collections
 import operator
+import heapq
 #1 Write a Python program to sum all the items in a list. 
 
 def sum_of_all_items(list1):
@@ -818,4 +819,883 @@ for i in nums:
   sum_of_nums += round(i)
   
 print(sum_of_nums);
+
+
+
+#84. Write a Python program to round the numbers of a given list, print the minimum and maximum numbers and multiply the numbers by 5. Print the unique numbers in ascending order separated by space.
+lis_org = [22.4, 4.0, 16.22, 9.1, 11.0, 12.22, 14.2, 5.2, 17.5]
+retun_lis = " ".join(list(map(str,sorted([round(i) * 5  for i in lis_org]))))
+print(retun_lis)
+
+
+
+#85. Write a Python program to create a multidimensional list (lists of lists) with zeros.
+#o/p [[0, 0], [0, 0], [0, 0]]
+Two_by_2 = [[0,0] for i in range(3)]
+print(Two_by_2)
+
+
+
+#86. Write a Python program to create a 3X3 grid with numbers
+Three_by_3 = [[j for j in range(1,4)] for i in range(3) ]
+print(Three_by_3)
+
+
+
+#87. Write a Python program to read a matrix from console and print the sum for each column. Accept matrix rows, columns and elements for each column separated with a space(for every row) as input from the user.
+
+
+
+#88. Write a Python program to read a square matrix from console and print the sum of matrix primary diagonal. Accept the size of the square matrix and elements for each column separated with a space (for every row) as input from the user.
+'''
+size = int(input("Input the size of the matrix: "))
+matrix = [[0] * size for row in range(0, size)]
+for x in range(0, size):
+    line = list(map(int, input().split()))
+    for y in range(0, size):
+        matrix[x][y] = line[y]
+
+sum_diagonal = sum(matrix[size - i - 1][size - i - 1] for i in range(size))
+print(sum_diagonal);
+'''
+
+#89. Write a Python program to Zip two given lists of lists.
+lis1 = [[1, 3], [5, 7], [9, 11]]
+lis2 = [[2, 4], [6, 8], [10, 12, 14]]
+
+return_lis = list(map(list.__add__,lis1,lis2))
+
+print(return_lis)
+
+
+
+#90. Write a Python program to count number of lists in a given list of lists.
+list_length = [[2, 4], [[6, 8], [4, 5, 8]], [10, 12, 14]]
+print("length of sub-lists:" , len(list_length));
+
+
+
+
+#91. Write a Python program to find the list with maximum and minimum length.
+list_of_int = [[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
+print("max", len(max(list_of_int)),max(list_of_int))
+print("min", len(min(list_of_int)),min(list_of_int))
+
+
+
+#92. Write a Python program to check if a nested list is a subset of another nested list.
+lis1 = [[1, 3], [5, 7], [9, 11], [13, 15, 17]]
+lis2 = [[1, 3], [13, 15, 17]]
+
+def check_subset(lis1,lis2):
+  return all(map(lis1.__contains__,lis2))
+
+print(check_subset(lis1,lis2));
+
+
+#93. Write a Python program to count the number of sublists contain a particular element. 
+def check_element_sublist(lis1, search_ele):
+  if len(lis1) <= 0 : return;  
+  i = 0;
+  for sub_list in lis1:
+    if search_ele in sub_list:
+      i+=1;
+  return i;
+
+sub_list = [[1, 3], [5, 7], [1, 11], [1, 15, 7]]
+search_element = 1
+output = check_element_sublist([[],[]], search_element)
+print(search_element,"Repeated in sub list",output,"times");
+
+
+
+#94. Write a Python program to count number of unique sublists within a given list.
+list_integers = [[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]
+c = collections.Counter()
+for sub_list in list_integers:
+  if tuple(sub_list) in c.keys():
+    c[tuple(sub_list)] = c[tuple(sub_list)] + 1   
+  else:
+    c[tuple(sub_list)] = 1; 
+print(dict(c))
+
+
+
+
+#95. Write a Python program to sort each sublist of strings in a given list of lists.
+sort_sublist_eg = [["green", "orange"], ["black", "white"], ["white", "black", "orange"]]
+sort = list(map(sorted,sort_sublist_eg))
+print(sort);
+
+
+#96. Write a Python program to sort a given list of lists by length and value.
+sort_sublist = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
+sort = sort_sublist.sort(key = lambda x:len(x), reverse=True)
+print(sort_sublist[::-1]);
+
+
+#97. Write a Python program to remove sublists from a given list of lists, which contains an element outside a given range.
+def remove_sublist(lis1, start,end):
+  return [sub_list for sub_list in lis1 if start and end in(sub_list)]
+      
+list1 = [[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7], [9, 11], [13, 14, 15, 17]]
+left_range = 13
+right_range = 17
+print(remove_sublist(list1,left_range,right_range));
+
+
+
+#98. Write a Python program to scramble the letters of string in a given list.
+def shuffle_word(word):
+  lis = list(word);
+  rand.shuffle(lis);
+  return ''.join(lis);
+
+list_string = ['Python', 'list', 'exercises', 'practice', 'solution']
+list_return = [shuffle_word(word) for word in list_string]
+print(list_return);
+
+
+
+#99. Write a Python program to find the maximum and minimum values in a given heterogeneous list.
+hetrogenous = ['Python', 3, 2, 4, 5, 'version']
+def min_max(lis):
+  xmin=(min(i for i in hetrogenous if isinstance(i,int)));
+  xmax=(max(i for i in hetrogenous if isinstance(i,int)));
+  return (xmin,xmax);
+  
+print(min_max(hetrogenous));
+
+
+
+#100. Write a Python program to extract common index elements from more than one given list.
+num1=  [1, 1, 3, 4, 5, 6, 7]
+num2=	[0, 1, 2, 3, 4, 5, 7]
+num3=	[0, 1, 2, 3, 4, 5, 7]
+
+def common_index_ele(l1,l2,l3):
+  return_lis = []
+  for i,j,k in zip(l1,l2,l3):
+    if i==j==k:
+      return_lis.append(i);
+  return return_lis;
+print(common_index_ele(num1,num2,num3));
+
+
+
+#101. Write a Python program to sort a given matrix in ascending order according to the sum of its rows.
+given_list = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
+given_list.sort(key= sum)
+print(given_list)
+
+
+
+#102. Write a Python program to extract specified size of strings from a give list of string values.
+def filter_length(lis, length):
+  return [l for l in lis if len(l) == length]
+   
+list_ = ['Python', 'list', 'exercises', 'practice', 'solution']
+length = 8
+print(filter_length(list_,length))
+
+
+
+#103. Write a Python program to extract specified number of elements from a given list, which follows each other continuously. 
+org_lis = [0, 1, 2, 3, 4, 4, 4, 4, 5, 7]
+ls = []
+return_lis = [ls.append(org_lis[i]) for i in range(0,len(org_lis)-1) if org_lis[i] == org_lis[i+1] and org_lis[i] not in ls]
+
+#for i in range(0,len(org_lis)-1):
+#  if org_
+print(ls);
+
+
+
+#104. Write a Python program to find the difference between consecutive numbers in a given list.
+lis = [4, 5, 8, 9, 6, 10]
+r_l = [lis[i+1] - lis[i]  for i in range(0,len(lis)-1)]
+print(r_l)
+
+
+
+#105. Write a Python program to compute average of two given lists.
+lis1 = [1, 1, 3, 4, 4, 5, 6, 7]
+lis2 = [0, 1, 2, 3, 4, 4, 5, 7, 8]
+
+result = sum(lis1+lis2)/len(lis1+lis2)
+print(result)
+
+
+#106. Write a Python program to count integer in a given mixed list. 
+mixed_list = [1, 'abcd', 3, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
+
+def count_int(lis):
+  count =0
+  for i in lis:
+    if type(i) is int: count +=1;
+
+  return count;
+  
+print(count_int(mixed_list));
+  
+  
+  
+#107. Write a Python program to remove a specified column from a given nested list.  
+remove_colum_lis = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+value = 1
+return_lis = [i[1:] for i in remove_colum_lis]
+print(return_lis)
+
+
+
+#108. Write a Python program to extract a specified column from a given nested list.
+def extract_column(lis, col_index):
+  if len(lis) <= 0 and col_index < 0:
+    return 
+  res = [arr[col_index] for arr in lis if len(arr) > col_index]
+  return res; 
+  
+lis = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+extract_index = 2;
+print(extract_column(lis, extract_index));
+
+
+#109. Write a Python program to rotate a given list by specified number of items to the right or left direction.
+nums1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print("#Rotate the said list in left direction by 4:")
+print(nums1[4:] + nums1[:4])
+
+print("#Rotate the said list in left direction by 2:")
+print(nums1[2:]+nums1[:2])
+
+print("#Rotate the said list in Right direction by 4:")
+print(nums1[-4:] + nums1[:-4])
+
+print("#Rotate the said list in Right direction by 2:")
+print(nums1[-2:] + nums1[:-2]);
+
+
+#110. Write a Python program to find the item with maximum occurrences in a given list.
+lis = [2, 3, 8, 4, 7, 9, 8, 2, 6, 5, 1, 6, 1, 2, 3, 4, 6, 9, 1, 2]
+
+def maximum_occurrences(lis):
+  dic_store = {};
+  for i in lis:
+    dic_store[i] = lis.count(i);  
+   
+  return dict(sorted(dic_store.items(), key = lambda x:x[1]));
+
+x = maximum_occurrences(lis)
+
+print("maximum occurrences",x.get(len(x)-1));
+
+
+#111. Write a Python program to access multiple elements of specified index from a given list.
+eg = [2, 3, 8, 4, 7, 9, 8, 2, 6, 5, 1, 6, 1, 2, 3, 4, 6, 9, 1, 2]
+index_list = [0, 3, 5, 7, 10]
+return_lis = [eg[i] for i in index_list]
+print(return_lis)
+
+
+
+#112. Write a Python program to check whether a specified list is sorted or not. Go to the editor Original list:
+ls = [1, 2, 4, 6, 8, 10, 12, 14, 16, 17]
+check_sorted = all(ls[i] <= ls[i+1] for i in range(0,len(ls) -1))
+print(check_sorted);
+
+
+#113. Write a Python program to remove duplicate dictionary from a given list.
+lis_of_dic = [{'Green': '#008000'}, {'Black': '#000000'}, {'Blue': '#0000FF'}, {'Green': '#008000'}]
+
+def remove_duplicate_dict(lis_dic):
+  returnlis = []
+  for i in lis_of_dic:
+    if i not in returnlis:
+      returnlis.append(i)
+      
+  return returnlis;
+  
+  
+print("113.",remove_duplicate_dict(lis_of_dic));
+
+
+
+
+#114. Write a Python program to extract the nth element from a given list of tuples.
+list_of_tuple = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+nth_element = 2;
+
+def extract_tuple(lis,ele):
+  return [l[ele] for l in lis ]
+  
+print(extract_tuple(list_of_tuple,nth_element))
+
+
+#115. Write a Python program to check if the elements of a given list are unique or not.
+lis = [1, 2, 4, 6, 8, 2, 1, 4, 10, 12, 14, 12, 16, 17]
+#lis=[2, 4, 6, 8, 10, 12, 14]
+def check_unique(lis):
+  return True if len(set(lis)) == len(lis) else False
+  
+print(check_unique(lis))  
+
+
+
+#116. Write a Python program to sort a list of lists by a given index of the inner list.
+li = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+def sort_by_index(li,index):
+  li.sort(key = lambda x : x[index]);
+  return li;
+  
+sort_index = 2
+print(sort_by_index(li,sort_index))
+
+
+
+#117. Write a Python program to remove all elements from a given list present in another list.
+lis1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+lis2 = [2, 4, 6, 8]
+
+unique_list = [i for i in lis1 if i not in lis2]
+print(unique_list)
+
+
+
+#118. Write a Python program to find the difference between elements (n+1th - nth) of a given list of numeric values.
+list_of_int = [2, 4, 6, 8]
+diff_ = [  list_of_int[i+1] - list_of_int[i] for i in range(0,len(list_of_int)-1)]
+print(diff_)
+
+
+#119. Write a Python program to check if a substring presents in a given list of string values.
+list_of_string = ['red', 'black', 'white', 'green', 'orange']
+substring_to_search = 'abc'
+
+def isSubstring(ls, substring):
+  return any(substring in string for string in ls);
+
+
+print(isSubstring(list_of_string,substring_to_search))
+  
+
+
+#120. Write a Python program to create a list taking alternate elements from a given list.
+colors = [2, 0, 3, 4, 0, 2, 8, 3, 4, 2]
+alternate_items = colors[::2]
+print(alternate_items)
+
+
+
+#121. Write a Python program to find the nested lists elements which are present in another list.
+lis1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+lis2 = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+
+def find_in_nested(lis1,lis2):
+  return [[i for i in lis1 if i in subList] for subList in lis2]
+  
+print(find_in_nested(lis1,lis2))
+  
+  
+
+#122. Write a Python program to find common element(s) in a given nested lists. 
+list_of_list = [[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]
+
+def find_common(lis):
+  if len(list_of_list) < 2:
+    return 
+  res = []
+  for length in range(1,len(lis)):
+    for j in lis[length]:
+      if j in lis[0] and j not in res:res.append(j);
+  return res;
+print(find_common(list_of_list))
+
+
+
+#123. Write a Python program to reverse strings in a given list of string values.
+org_lis = ['Red', 'Green', 'Blue', 'White', 'Black']
+reverse_words = [i[::-1] for i in org_lis]
+print(reverse_words)
+
+
+
+#124. Write a Python program to find the maximum and minimum product from the pairs of tuple within a given list.
+lis_of_tupl = [(2, 7), (2, 6), (1, 8), (4, 9)]
+def max_min_product(lis):
+  product_tupl = []
+  for i in lis:
+    prod = 1;
+    for j in i:
+      prod *= j
+    product_tupl.append(prod);
+  
+  return (max(product_tupl),min(product_tupl))
+  
+print(max_min_product(lis_of_tupl))
+
+
+
+#125. Write a Python program to calculate the product of the unique numbers of a given list.
+def product_unique_num(lis):
+  prod = 1
+  for i in set(lis):
+    prod *= i;
+  return prod;
+
+
+lis = [10, 20, 30, 40, 20, 50, 60, 40]
+print(product_unique_num(lis))
+
+
+
+#126. Write a Python program to interleave multiple lists of the same length.
+lis1 = [1, 2, 3, 4, 5, 6, 7]
+lis2 = [10, 20, 30, 40, 50, 60, 70]
+lis3 = [100, 200, 300, 400, 500, 600, 700]
+return_lis = list(zip(lis1,lis2,lis3))
+print(return_lis)
+
+
+
+#127. Write a Python program to remove words from a given list of strings containing a character or string.
+
+list1 = ['Red color', 'Orange#', 'Green', 'Orange @', 'White']
+char_list = ['#','color','@']
+
+def remove_words(lis, char_list):
+  res = []
+  for line in lis:
+    new_words = " ".join([ i for i in line.split() if not any([ls in i for ls in char_list])])
+    res.append(new_words)
+  return res;
+  
+print(remove_words(list1,char_list))
+  
+
+  
+#128. Write a Python program to calculate the sum of the numbers in a list between the indices of a specified range.
+def sum_index_list(lis,m,n):
+  res = 0;
+  for i in range(m,n+1):
+    res += lis[i]
+  return res;
+
+nums = [2,1,5,6,8,3,4,9,10,11,8,12]
+m = 8
+n = 10
+print(sum_index_list(nums,m,n));
+  
+
+
+#129. Write a Python program to reverse each list in a given list of lists.
+
+list_of_lists = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+
+def reverse_sublist(lis):
+  return [[i[::-1]] for i in lis]
+  
+print(reverse_sublist(list_of_lists))
+
+
+
+#130. Write a Python program to count the same pair in three given lists.
+l1 = [1, 2, 3, 4, 5, 6, 7, 8]
+l2 = [2, 2, 3, 1, 2, 6, 7, 9]
+l3 = [2, 1, 3, 1, 2, 6, 7, 9]
+
+res = sum([int(i==j==k) for i,j,k in zip(l1,l2,l3)])
+print(res)
+
+
+
+#131. Write a Python program to count the frequency of consecutive duplicate elements in a given list of numbers.
+lis = [1, 2, 2, 2, 4, 4, 4, 5, 5, 5, 5]
+
+dic_ex = {}
+for i in lis:
+  dic_ex[i] = lis.count(i);
+    
+x = (list(dic_ex.keys()),list(dic_ex.values()));
+
+print(x)
+
+
+#132. Write a Python program to find all index positions of the maximum and minimum values in a given list of numbers.
+lis = [12, 33, 23, 10, 67, 89, 45, 667, 23, 12, 11, 10, 54]
+
+def min_max_index(lis):
+  min_num = min(lis)
+  max_num = max(lis)
+  
+  min_ = [i for i,j in enumerate(lis) if j==min_num]
+  max_ = [i for i,j in enumerate(lis) if j == max_num]
+  
+  return min_,max_;
+  
+
+result = min_max_index(lis)
+print("min",result[0]);
+print("max",result[1]);
+
+
+
+#133. Write a Python program to check common elements between two given list are in same order or not.
+c1 = ['red', 'green', 'black', 'orange']
+c2 = ['red', 'pink', 'green', 'white', 'black']
+c3 = ['white', 'orange', 'pink', 'black']
+
+def check_common_element(lis1,lis2):
+  result = any( c1 == c2 for c1,c2 in zip(lis1,lis2))
+  return result
+
+print(check_common_element(c1,c2));
+
+
+
+
+#134. Write a Python program to find the difference between two list including duplicate elements.
+lis1 = [1, 1, 2, 3, 3, 4, 4, 5, 6, 7]
+lis2 = [1, 1, 2, 4, 5, 6]
+
+def diff_between_list(lis1,lis2):
+  result = list(lis1)
+  for i in lis2:
+    result.remove(i)
+  return result;
+
+print(diff_between_list(lis1,lis2))
+
+
+#135. Write a Python program to iterate over all pairs of consecutive items in a given list.
+lis = [1, 1, 2, 3, 3, 4, 4, 5]
+response = [(lis[i],lis[i+1]) for i in range(0,len(lis)-1)]
+print(response); 
+
+
+#136. Write a Python program to remove duplicate words from a given list of strings.
+lis = ['Python', 'Exercises', 'Practice', 'Solution', 'Exercises']
+
+def remove_duplicate_words(lis):
+  result = []
+  for i in lis:
+    if i not in result:
+      result.append(i)
+  return result
+  
+print(remove_duplicate_words(lis));
+
+
+
+#137. Write a Python program to find a first even and odd number in a given list of numbers.
+def first_even_odd(lis):
+  first_even = next( (i for i in lis if i%2==0),-1)
+  first_odd = next(i for i in lis if i%2 !=0);  
+  return (first_even, first_odd);
+  
+nums= [1,3,5,7,4,1,6,8]
+print(first_even_odd(nums))
+
+
+#138. Write a Python program to sort a given mixed list of integers and strings. Numbers must be sorted before strings.
+original_list = [19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]
+
+def mixed_sorting(lis):
+  #sorting using sorted function
+  sorting_nums = sorted([i for i in lis if type(i) is int])
+  sorting_str = sorted([i for i in lis if type(i) is str])
+  return (sorting_nums+sorting_str)
+
+print(mixed_sorting(original_list));
+
+
+#139. Write a Python program to sort a given list of strings(numbers) numerically.
+def str_num_sort(lis):
+  return sorted([int(i) for i in lis])
+
+lis = ['4', '12', '45', '7', '0', '100', '200', '-12', '-500']
+print(str_num_sort(lis))
+
+
+#140. Write a Python program to remove the specific item from a given list of lists.
+lis = [['Red', 'Maroon', 'Yellow', 'Olive'], ['#FF0000', '#800000', '#FFFF00', '#808000'], ['rgb(255,0,0)', 'rgb(128,0,0)', 'rgb(255,255,0)', 'rgb(128,128,0)']]
+
+def remove_index(lis,index):
+  return [[k for j,k in enumerate(i) if j!=index-1] for i in lis]
+  
+index = 4  
+print(remove_index(lis,index))
+
+
+
+#141. Write a Python program to remove empty lists from a given list of lists.
+lis = [[], [], [], 'Red', 'Green', [1, 2], 'Blue', [], []]
+def remove_empty_list(lis):
+  return [i for i in lis if hasattr(i, '__iter__') and len(i) > 0]
+  
+print(remove_empty_list(lis));  
+
+
+#142. Write a Python program to sum a specific column of a list in a given list of lists.
+lis_of_lis = [[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]]
+
+def sum_of_col(lis,col):
+  return sum([i[col] for i in lis])
+  
+col = 3
+print(sum_of_col(lis_of_lis,col))    
+
+
+#143. Write a Python program to get the frequency of the elements in a given list of lists.
+frequency_eg = [[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]]
+dic = {}
+def frequency_list_of_list(lis_of_lis):  
+  for i in lis_of_lis:
+    for j in i:
+      count = 1
+      if j in dic:
+        dic[j] = dic.get(j) + 1
+      else:  
+        dic[j] = count
+  return dic;
+  
+print(frequency_list_of_list(frequency_eg))
+
+
+#144. Write a Python program to extract every first or specified element from a given two-dimensional list.
+start = -5 
+stop = 5
+excpt = [-5,0,4,3,2]
+
+def generate_num(start, end,lis):
+  num = rand.choice([i for i in range(start,end+1) if i not in lis])
+  return num 
+
+print(generate_num(start,stop,excpt))
+
+
+
+
+#146. Write a Python program to compute the sum of digits of each number of a given list.
+num = [10, 20, -4, 5, -70]
+
+def sum_of_digits(num):
+  sum_ = 0;
+  for i in num:
+    if isinstance(i,int):
+      x = abs(i)
+      while x > 0:
+        mod = int(x%10)
+        x /= 10;
+        sum_ += mod;
+  return sum_      
+
+print(sum_of_digits(num))
+
+
+
+#147. Write a Python program to interleave two given list into another list randomly.
+l1 = [1, 2, 7, 8, 3, 7]
+l2 = [4, 3, 8, 9, 4, 3, 8, 9]
+l3 = l1 + l2;
+rand.shuffle(l3)
+print(l3);
+
+
+
+#148. Write a Python program to remove specific words from a given list.
+lis = ['red', 'green', 'blue', 'white', 'black', 'orange']
+remove_words = ['white', 'orange']
+def given_list(lis, remove):
+  return [i for i in lis if i not in remove]
+
+print(given_list(lis,remove_words))
+
+
+
+
+#!149. Write a Python program to get all possible combinations of the elements of a given list.
+lis = ['orange', 'red', 'green', 'blue']
+lis2 = list(itertools.combinations(lis,2))
+#print(lis2)
+
+
+#150. Write a Python program to reverse a given list of lists.
+ls = [[1, 2, 3, 4], [0, 2, 4, 5], [2, 3, 4, 2, 4]]
+reverse_lis = ls[::-1]
+print(reverse_lis);
+
+
+
+#151. Write a Python program to find the maximum and minimum values in a given list within specified index range.
+lis = [4, 3, 0, 5, 3, 0, 2, 3, 4, 2, 4, 3, 5]
+def min_max_range(lis,start,end):
+  lis_min = min(lis[i] for i in range(start,end))
+  lis_max = max(lis[i] for i in range(start,end))
+  return lis_max,lis_min
+  
+  
+start = 3
+end = 8  
+print(min_max_range(lis,start,end));
+
+
+
+#152. Write a Python program to combine two given sorted lists using heapq module.
+l1=[1, 3, 5, 7, 9, 11]
+l2=[0, 2, 4, 6, 8, 10]
+print(list(heapq.merge(l1,l2)));
+
+
+
+#153. Write a Python program to check if a given element occurs at least n times in a list.
+lis = [0, 1, 3, 5, 0, 3, 4, 5, 0, 8, 0, 3, 6, 0, 3, 1, 1, 0]
+#Check if 3 occurs at least 4 times in a list:
+ele = 3
+times = 4
+
+#Check if 8 occurs at least 3 times in a list:
+ele1 = 8
+times2 = 3
+
+def occurs_n_times(lis,ele,nth):
+  return True if lis.count(ele) and lis.count(ele)>=4 else False 
+    
+#print(occurs_n_times(lis, ele,times))
+print(occurs_n_times(lis, ele1,times2))
+
+
+#154. Write a Python program to join two given list of lists of same length, element wise.
+lis1 = [['a', 'b'], ['b', 'c', 'd'], ['e', 'f']]
+lis2 = [['p', 'q'], ['p', 's', 't'], ['u', 'v', 'w']]
+
+def join_two_list(lis1,lis2):
+  return [l1+l2 for l1,l2 in zip(lis1,lis2)]
+
+print(join_two_list(lis1, lis2))
+
+
+#155. Write a Python program to add two given lists of different lengths, start from left.
+lis1 = [3, 3, -1, 7]
+lis2 = [2, 4, 7, 0, 5, 8]
+
+def add_two_list(l1, l2):
+  lis1 = l1
+  lis2 = l2
+  if len(lis2) > len(lis1):
+    temp = lis2
+    lis2 = lis1
+    lis1 = temp
+  for i in range(0,len(lis1)):
+    if i > len(lis2)-1:
+      break;
+    lis1[i] = lis1[i] + lis2[i]
+  return lis1
+  
+print(add_two_list(lis1,lis2))
+
+
+#156. Write a Python program to add two given lists of different lengths, start from right.
+
+def add_two_list_right(lis1,lis2):
+  lis1 = l1
+  lis2 = l2
+  
+  if len(lis2) > len(lis1):
+    temp = lis2
+    lis2 = lis1
+    lis1 = temp
+  length2 = len(lis2) - 1
+  for i in range(len(lis1)-1,-1,-1):
+    if length2 < 0:
+      break; 
+    else:
+      lis1[i] = lis1[i] + lis2[length2]
+      length2 -= 1;
+  return lis1
+  
+l1 = [1, 2, 3, 4, 5, 6]
+l2 = [2, 4, -3]
+print(add_two_list_right(l1,l2))
+
+
+#157. Write a Python program to interleave multiple given lists of different lengths.
+
+
+def interleave_multiple_list(l1,l2,l3,l4):
+  ll1 = len(l1)
+  ll2 = len(l2)
+  ll3 = len(l3)
+  ll4 = len(l4)
+  
+  result = []
+  for i in range(max(ll1,ll2,ll3,ll4)):
+    if i < ll1:
+      result.append(l1[i])
+      
+    if i < ll2:
+      result.append(l2[i])
+    
+    
+    if i < ll3:
+      result.append(l3[i])
+    
+    
+    if i < ll4:
+      result.append(l4[i])
+    
+  return result;
+    
+
+l1=[2, 4, 7, 0, 5, 8]
+l2=[2, 5, 8]
+l3=[0, 1]
+l4=[3, 3, -1, 7]
+
+print(interleave_multiple_list(l1,l2,l3,l4))
+
+
+
+
+#158. Write a Python program to find the maximum and minimum values in a given list of tuples.
+lis = [('V', 60), ('VI', 70), ('VII', 75), ('VIII', 72), ('IX', 78), ('X', 70)]
+lis_max = max(i[1] for i in lis)
+lis_min = min(i[1] for i in lis)
+print((lis_min,lis_max))
+
+
+
+#159. Write a Python program to append the same value /a list multiple times to a list/list-of-lists.
+def add_multiple_times(item, times, lis=[]):
+   for i in range(times):
+     lis.append(item);
+     
+   return lis
+
+print(add_multiple_times([1, 2, 5],3,[[5, 6, 7], [1, 2, 5]]))
+
+
+#160. Write a Python program to remove first specified number of elements from a given list satisfying a condition.
+def remove_number_of_elements(ls,times):
+  count = 1 
+  result = [] 
+  for i in ls:
+    if count>times or (i%2 != 0):
+      result.append(i);
+    else:  
+      count +=1;
+    
+  return result;    
+    
+ls = [3,10,4,7,5,7,8,3,3,4,5,9,3,4,9,8,5]    
+print(remove_number_of_elements(ls,4))
+
+
+
+#162. Write a Python program to find the last occurrence of a specified item in a given list.
+def last_occurrence_item(lis,ele):
+  return "".join(lis).rfind(ele);
+lis = ['s', 'd', 'f', 's', 'd', 'f', 's', 'f', 'k', 'o', 'p', 'i', 'w', 'e', 'k', 'c']
+print(last_occurrence_item(lis,'w'));
+
 

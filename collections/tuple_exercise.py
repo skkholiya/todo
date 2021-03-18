@@ -138,3 +138,120 @@ list_of_dic = [("kaira",44),("tim",32)]
 list_dic = {x:y for x,y in list_of_dic}
 print(list_dic)
 
+
+
+#20. Write a Python program to print a tuple with string formatting.
+tuple_eg = (100, 200, 300)
+
+print("This is a tuple {}".format(tuple_eg));
+
+
+
+#21. Write a Python program to replace last value of tuples in a list. 
+eg_list = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+replaced_value = (100,);
+tuple_lis = [t[:-1] + replaced_value for t in eg_list]
+print(tuple_lis)
+
+
+#22. Write a Python program to remove an empty tuple(s) from a list of tuples.
+lis_of_tupl = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+remove_empty = [i for i in lis_of_tupl if len(i) > 0]
+print(remove_empty)
+
+
+
+#23. Write a Python program to sort a tuple by its float element. 
+sort_tuple_eg = [('item1', '12.20'), ('item2', '15.10'), ('item3', '24.5')]
+sort_tuple_eg.sort(key = lambda x:x[1], reverse = True);
+print(sort_tuple_eg)
+
+
+
+#24. Write a Python program to count the elements in a list until an element is a tuple. 
+lst_tple = [10,20,30,(10,20),40]
+count = 0;
+for i in lst_tple:
+  if isinstance(i,tuple):
+    break
+  count +=1;
+
+print(count);
+
+
+#25. Write a Python program convert a given string list to a tuple.
+string = 'python 3.0'
+string_to_tpl = tuple(i for i in string)
+print(string_to_tpl)
+
+
+#26. Write a Python program calculate the product, multiplying all the numbers of a given tuple.
+tupl_multiply = (4, 3, 2, 2, -1, 18)
+
+def multiplication(x):
+  multiplication = 1;
+  for i in tupl_multiply:
+    multiplication *= i
+  return multiplication; 
+  
+print(multiplication(tupl_multiply));
+
+
+
+#27. Write a Python program to calculate the average value of the numbers in a given tuple of tuples.
+
+def avg_of_tuples(tupl):
+  tupl_list = [];
+  for sub_tupl in zip(*tupl):
+    tupl_list.append(sum(sub_tupl)/len(sub_tupl))
+    
+  return tupl_list;
+
+avg_of_tuple = ((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4))
+
+print(avg_of_tuples(avg_of_tuple));
+
+
+
+#28. Write a Python program to convert a tuple of string values to a tuple of integer values.
+tuples_of_string =  (('333', '33'), ('1416', '55'))
+tuples_of_int = tuple(tuple(int(j) for j in i) for i in tuples_of_string )
+print(type(tuples_of_int))
+print(tuples_of_int);
+
+
+
+#29. Write a Python program to convert a given tuple of positive integers into an integer.
+tupl_of_int =  (10, 20, 40, 5, 70)
+join_to_string = "".join(str(i) for i in tupl_of_int if isinstance(i,int))
+print((join_to_string))
+
+
+
+
+#30. Write a Python program to check if a specified element presents in a tuple of tuples.
+tupl_of_tupls = (('Red', 'White', 'Blue'), ('Green', 'Pink', 'Purple'), ('Orange', 'Yellow', 'Lime'))
+
+
+def isTuplePresent(tupls,value):
+  return any(True for i in tupls if value in i)
+
+
+print(isTuplePresent(tupl_of_tupls,"White"));
+
+
+
+#31. Write a Python program to compute element-wise sum of given tuples.
+l1 = (1, 2, 3, 4)
+l2 = (3, 5, 2, 1)
+l3 = (2, 2, 3, 1)
+
+sum_of_cols = tuple(int(c1+c2+c3) for c1,c2,c3 in zip(l1,l2,l3))
+print(sum_of_cols)
+
+
+
+#32. Write a Python program to compute the sum of all the elements of each tuple stored inside a list of tuples.
+summation = [(1, 2), (2, 3), (3, 4)]
+result = [ sum(i) for i in summation]
+print(result);

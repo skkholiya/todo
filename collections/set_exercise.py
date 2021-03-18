@@ -183,3 +183,10 @@ print(True) if set1.isdisjoint(set2) else print(False)
 
 
 
+
+#21. Write a Python program to remove the intersection of a 2nd set from the 1st set. 
+set1 = {1,2,3,4,5}
+set2 = {5,6,7,8,9}
+res = set1.difference_update(set2)
+print(set1);
+

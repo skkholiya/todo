@@ -415,3 +415,265 @@ name_dic = {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pi
 return_greater_175 = filter(lambda x: x[1]>170,name_dic.items())
 print(dict(return_greater_175))
 
+
+
+#43. Write a Python program to convert more than one list to nested dictionary.
+l1 = ['S001', 'S002', 'S003', 'S004']
+l2 = ['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards']
+l3 = [85, 98, 89, 92]
+
+dictionary = {k:{sk:sv} for k,sk,sv in zip(l1,l2,l3)}
+print(dictionary);
+
+
+
+#44. Write a Python program to filter the height and width of students, which are stored in a dictionary.
+dic_of_tuple_value = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+filter_object = {k:v for k,v in dic_of_tuple_value.items() if v[0]>= 6.0  and v[1]>=70}
+print(filter_object)
+
+
+
+#45. Write a Python program to check all values are same in a dictionary.
+check_value = {'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12}
+specified_value = 12
+equal_12 = all(True if v == specified_value else False for k,v in check_value.items())
+print(equal_12);
+
+
+#46. Write a Python program to create a dictionary grouping a sequence of key-value pairs into a dictionary of lists.
+lis_of_tuple = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+group_dic = {}
+
+for i,k in lis_of_tuple:
+  group_dic.setdefault(i,[]).append(k);
+
+print(group_dic);
+
+
+
+#47. Write a Python program to split a given dictionary of lists into list of dictionaries. 
+def list_of_dic(dic):
+  keys = dic.keys(); 
+  values = zip(*[ dic[key] for key in keys])
+  result = dict(zip(keys,v) for v in values )
+  return result;
+
+dic_ex = {'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+print(list_of_dic(dic_ex))
+
+
+#48. Write a Python program to remove a specified dictionary from a given list. 
+list_of_dic = [ {'id': '#800000', 'color': 'Maroon'}, {'id': '#FF0000', 'color': 'Red'}, {'id': '#FFFF00', 'color': 'Yellow'}, {'id': '#808000', 'color': 'Olive'}]
+
+remove_id = '#FF0000';
+
+def remove_item(lis,key):
+  lis[:] = [dic for dic in lis if dic.get('id') != key]
+  return lis;
+print(remove_item(list_of_dic,remove_id));
+
+
+
+#49. Write a Python program to convert string values of a given dictionary, into integer/float datatypes.
+original_list = [{'x': '10', 'y': '20', 'z': 30}, {'p': '40', 'q': '50', 'r': '60'}]
+
+number_values = [{k:int(v) for i in original_list for k,v in i.items()}]
+print(number_values);
+
+
+
+#50. A Python Dictionary contains List as value. Write a Python program to clear the list values in the said dictionary.
+dic_eg =  {'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+clear_values = {}
+for k,v in dic_eg.items():
+  if isinstance(v,list):
+    v = [];
+print("50.",dic_eg);
+
+
+
+#51. A Python Dictionary contains List as value. Write a Python program to update the list values in the said dictionary.
+dic = {'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+
+def update_dict(dic):
+  dic['Math'] = [i+1 for i in dic['Math']]
+  dic['Physics'] = [i-2 for i in dic['Physics']]
+  return dic;
+
+print(update_dict(dic));
+
+
+
+#52. Write a Python program to extract a list of values from a given list of dictionaries.
+
+list_of_dic = [{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+key = "Science"
+def extract_value(lis, key):
+  lis = [i[key] for i in lis if key in i]
+  return lis;  
+
+print(extract_value(list_of_dic, key));
+
+
+
+#53. Write a Python program to find the length of a given dictionary values.
+dic_value = {'1': 'Austin Little', '2': 'Natasha Howard', '3': 'Alfred Mullins', '4': 'Jamie Rowe'}
+return_dic = {v:len(v) for k,v in dic_value.items()}
+print(return_dic)
+
+
+# ! 54. Write a Python program to get the depth of a dictionary.
+dic = {'a':1, 'b': {'c': {'d': {}}}}
+
+def dic_depth(dic):
+  if isinstance(dic,dict):
+    
+    return 1 #+ (max(map(dic_depth, dic.values())) if d else 0)
+  else:
+    return 0
+    
+print(dic_depth(dic));
+
+
+
+#55. Write a Python program to access dictionary key's element by index. 
+num = {'physics': 80, 'math': 90, 'chemistry': 86}
+ls = list(num)
+for i in range(0,len(ls)):
+  print(ls[i]);
+  
+  
+  
+#56. Write a Python program to convert a given dictionary into a list of lists.
+dic = {1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}  
+
+def dic_to_list_of_lists(dic):
+  return [[k,v] for k,v in dic.items()]  
+print(dic_to_list_of_lists(dic));  
+
+
+
+
+
+#57. Write a Python program to filter even numbers from a given dictionary values. 
+filter_ex = {'V': [1, 3, 5], 'VI': [1, 5], 'VII': [2, 7, 9]}
+res = {k:[s for s in v if s%2==0] for k,v in filter_ex.items()}
+print(res)
+
+
+
+#58. Write a Python program to get all combinations of key-value pairs in a given dictionary.
+combination = {'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+
+for k in itertools.combinations(combination.items(),2):
+  print(dict(k))
+  
+
+#59. Write a Python program to find the specified number of maximum values in a given dictionary.  
+dic = {'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}
+sort = dict(sorted(dic.items(),key=lambda x : x[1],reverse= True))
+print("#1 maximum value(s) in the said dictionary:")
+print(list(sort)[:1]);
+print("#2 maximum value(s) in the said dictionary:")
+print(list(sort)[:2]);
+print("#5 maximum value(s) in the said dictionary:")
+print(list(sort)[:5]);
+
+
+#60. Write a Python program to find shortest list of values with the keys in a given dictionary.
+dictt = {
+ 'V': [10, 12],
+ 'VI': [10],
+ 'VII': [10, 20, 30, 40],
+ 'VIII': [20],
+ 'IX': [10,30,50,70],
+ 'X': [80]
+ }
+
+def shortest_list(dic):
+  return [k for k,v in dic.items() if len(v) == 1 ]
+
+print(shortest_list(dictt))
+
+
+
+#61. Write a Python program to count the frequency in a given dictionary. 
+dic = {'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+value_frequency = collections.Counter(dic.values())
+print(value_frequency)
+
+
+
+#62. Write a Python program to extract values from a given dictionaries and create a list of lists from those values.
+ex = [{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'}, {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+
+list_of_items = [ [v for k,v in i.items()]  for i in ex if i.keys() ] 
+print(list_of_items)
+
+list_of_values = [ [v for k,v in i.items() if k in('student_id','name')]  for i in ex if i.keys() ] 
+print(list_of_values);
+
+name_class = [ [v for k,v in i.items() if k in('class','name')]  for i in ex if i.keys() ] 
+print(name_class);
+
+
+#63. Write a Python program to convert a given list of lists to a dictionary.
+lis_eg=[[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
+
+def list_to_dic(lis):
+  return {i[0]:i[1:] for i in lis}
+
+print("63",list_to_dic(lis_eg))
+
+
+#64. Write a Python program to create a key-value list pairings in a given dictionary.
+dic_eg = {1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+
+def convert_to_dict(eg):
+  eg_r = {}
+  for k,v in dic_eg.items():
+    eg_r[k] = "".join(v)
+  return eg_r;
+
+print(convert_to_dict(dic_eg))
+
+
+
+#65. Write a Python program to get the total length of all values of a given dictionary with string values.
+dic = {'#FF0000': 'Red', '#800000': 'Maroon', '#FFFF00': 'Yellow', '#808000': 'Olive'}
+
+def len_dic_value(dic):
+  count = 0;
+  for v in dic.values(): count += len(v)
+  return count
+  
+print(len_dic_value(dic));
+
+
+
+#66. Write a Python program to check if a specific Key and a value exist in a dictionary.
+
+
+students = [
+        {'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, 
+        {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+        {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, 
+        {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, 
+        {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}
+        ]
+
+
+def check_dic_item(ex,key,value):
+  
+  return any([True for i in students if key in i.keys() and value in i.values()])
+
+key = 'name'
+value = 'Lynne Foster'
+print(check_dic_item(students,key,value))
+print(check_dic_item(students,'student_id', 1))
+print(check_dic_item(students,'name', 'Brian Howell'))
+print(check_dic_item(students,'class', 'VII'))
+print(check_dic_item(students,'class', 'I'))
+print(check_dic_item(students,'name', 'Brian Howelll'))
+print(check_dic_item(students,'student_id', 11))
